@@ -19,6 +19,7 @@ deps:
 	@GOPATH=$(GOPATH) go get -u "github.com/aaronland/go-string"
 	@GOPATH=$(GOPATH) go get -u "github.com/aaronland/go-storage"
 	@GOPATH=$(GOPATH) go get -u "github.com/aaronland/go-storage-s3"
+	rm -rf src/github.com/aaronland/go-storage-s3/vendor/github.com/aaronland
 
 vendor-deps: rmdeps deps
 	if test ! -d vendor; then mkdir vendor; fi
@@ -32,3 +33,4 @@ fmt:
 
 bin: 	self
 	rm -rf bin/*
+	@GOPATH=$(GOPATH) go build -o bin/sfom-store cmd/sfom-store.go
